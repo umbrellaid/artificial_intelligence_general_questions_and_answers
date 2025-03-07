@@ -52,11 +52,11 @@ nesting. - Run the command as shown, and you’ll get the result you’re aiming
 for! Let me know if you need more help.
 #+end_example
 ** Question: show me three scenarios with rsync what would the outcome be so I
-   understand putting a slash at the end of the command
-rsync -av --delete --dry-run /drive/a/folder a /drive/b/folder b rsync -av
---delete --dry-run /drive/a/folder a/ /drive/b/folder b rsync -av --delete
---dry-run /drive/a/folder a/ /drive/b/folder b/ drive a has: folder a file a
-drive b has: folder b file b
+   understand putting a slash at the end of the command rsync -av --delete
+--dry-run /drive/a/folder a /drive/b/folder b rsync -av --delete --dry-run
+/drive/a/folder a/ /drive/b/folder b rsync -av --delete --dry-run
+/drive/a/folder a/ /drive/b/folder b/ drive a has: folder a file a drive b has:
+folder b file b
 #+begin_example
   Let’s break down the three `rsync` scenarios you provided and analyze the
   outcomes step by step. The key difference between them lies in the use of
@@ -939,4 +939,76 @@ data from the repository.
 This setup gives you a basic, yet robust, backup strategy using `restic`.
 Remember, regular testing of your backups (by restoring them to a test
 environment) is crucial to ensure data integrity.
+#+end_example
+** Question: rsync current directory mysubfolder to ssh of 192.168.86.59
+   ~/Downloads folder all files and subfolders of mysubfolder how to write
+   command
+#+begin_example
+To use `rsync` to copy the contents of `mysubfolder` (in your current directory)
+to the `~/Downloads` folder on a remote machine at `192.168.86.59` via SSH,
+including all files and subfolders, here’s the command:
+
+```bash rsync -avz --progress mysubfolder/ user@192.168.86.59:~/Downloads/ ```
+
+### Explanation of the command: 1. **`rsync`**: The command-line tool for
+syncing files. 2. **`-a`**: Archive mode; preserves symbolic links, file
+permissions, timestamps, etc., and recursively copies directories. 3. **`-v`**:
+Verbose mode; shows detailed output of what’s being transferred. 4. **`-z`**:
+Compresses data during transfer to save bandwidth. 5. **`--progress`**: Displays
+progress information for each file being transferred. 6. **`mysubfolder/`**: The
+source directory (note the trailing `/` to copy the *contents* of `mysubfolder`,
+not the folder itself). 7. **`user@192.168.86.59`**: Replace `user` with your
+actual username on the remote machine. 8. **`~/Downloads/`**: The destination
+path on the remote machine (the trailing `/` ensures contents are placed inside
+`Downloads`).
+
+### Notes: - Make sure you have SSH access to `192.168.86.59` and replace `user`
+with the correct username. - If you need to specify a different SSH port
+(default is 22), add `-e 'ssh -p PORT'` (replace `PORT` with the port number),
+like this: ```bash rsync -avz -e 'ssh -p 2222' --progress mysubfolder/
+user@192.168.86.59:~/Downloads/ ``` - If you want to test the command first
+without transferring anything, add `--dry-run`: ```bash rsync -avz --progress
+--dry-run mysubfolder/ user@192.168.86.59:~/Downloads/ ```
+
+Let me know if you need further clarification!
+#+end_example
+** Question: in emacs what command do I run with m-x with the text highlighted
+   to hard wrap the text at 80 lines so that the text is formatted that way so
+   if you open it with a plain text editor you see the lines have returns in the
+   actual file to make them 80 characters wide
+#+begin_example
+In Emacs, to hard wrap highlighted text at 80 characters (so that actual line
+breaks are inserted into the file), you can use the `fill-region` command with a
+custom column width. Here’s how to do it:
+
+1. Highlight the text you want to wrap (e.g., by using `C-Space` to set the mark
+and moving the cursor to select the region). 2. Press `M-x` to open the
+minibuffer. 3. Type `fill-region` and press `Enter`. This command wraps the
+selected text, but it uses the default `fill-column` value (usually 70).
+
+To specifically set it to 80 characters, you need to adjust the `fill-column`
+value first. Here’s the full process:
+
+### Steps: 1. Highlight the text (the region) you want to wrap. 2. Set the
+`fill-column` to 80 by typing: - `M-x set-variable` `Enter` - Type `fill-column`
+`Enter` - Type `80` `Enter` 3. Now run the wrap command: - `M-x fill-region`
+`Enter`
+
+This will insert hard line breaks at or before 80 characters in the highlighted
+region, and the result will be visible as actual line breaks in any plain text
+editor.
+
+### Shortcut Alternative: If you do this often, you can use a keybinding or
+create a quick command. For example, `M-q` (`fill-paragraph`) works on the
+current paragraph, but it respects `fill-column`. To apply it to a region
+instead of a paragraph: - Set `fill-column` to 80 as above. - Use `M-x
+fill-region` for the selected text.
+
+### Permanent Setting: If you always want 80 characters as your default, add
+this to your Emacs configuration file (e.g., `~/.emacs` or
+`~/.emacs.d/init.el`): ```elisp (setq-default fill-column 80) ``` Then you can
+just highlight text and run `M-x fill-region` without setting the variable each
+time.
+
+Let me know if you need further clarification!
 #+end_example
