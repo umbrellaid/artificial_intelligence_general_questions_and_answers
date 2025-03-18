@@ -1,4 +1,36 @@
-* artificial intelligence general questions and answers
+
+* artificial inelligence general questions and answers
+** Table of Contents
+:PROPERTIES:
+:TOC:      :include all
+:END:
+:CONTENTS:
+- [[#artificial-inelligence-general-questions-and-answers][artificial inelligence general questions and answers]]
+  - [[#table-of-contents][Table of Contents]]
+  - [[#introduction][Introduction]]
+  - [[#question-when-using-rsync-do-i-put-the-slash--at-the-end-of-the-path-or-not][Question: when using rsync do I put the slash / at the end of the path or not]]
+  - [[#question-show-me-three-scenarios-with-rsync-what-would-the-outcome-be-so-i][Question: show me three scenarios with rsync what would the outcome be so I]]
+  - [[#question-i-created-a-restic-repo-backup-onto-an-external-hard-drive-i-want][Question: I created a restic repo backup onto an external hard drive, I want]]
+  - [[#question-can-restic-update-another-computer-with-the-repo-on-the-same][Question: can restic update another computer with the repo on the same]]
+  - [[#question-when-on-the-command-line-linux-and-i-have-a-command-like-rsync--av][Question: when on the command line linux and I have a command like rsync -av]]
+  - [[#question-i-have-two-computers-on-the-same-network-i-want-to-transfer-a][Question: I have two computers on the same network I want to transfer a]]
+  - [[#question-linux-write-command-for-rsync-to-have-all-files-in][Question: linux write command for rsync to have all files in]]
+  - [[#question-what-is-the-command-in-emacs-to-search-for-the-word-under-the-point][Question: what is the command in emacs to search for the word under the point]]
+  - [[#question-please-list-top-books-for-learning-lisp-programming-languages][Question: please list top books for learning lisp programming languages]]
+  - [[#question-how-do-you-jump-to-the-next-paragraph-or-next-blank-line-in-emacs][Question: how do you jump to the next paragraph or next blank line in emacs]]
+  - [[#question-how-does-gnu-guile-lisp-compare-with-emacs-lisp-does-learning-one][Question: how does gnu guile lisp compare with emacs lisp does learning one]]
+  - [[#question-linux-mint-uninstall-xrdp][Question: linux mint uninstall xrdp]]
+  - [[#question-linux-mint-how-do-i-enable-ssh-or-see-if-it-is-on][Question: linux mint how do I enable ssh or see if it is on]]
+  - [[#question-walk-me-through-using-the-linux-tool-restic-to-create-a-backup-of][Question: walk me through using the linux tool restic to create a backup of]]
+  - [[#question-rsync-current-directory-mysubfolder-to-ssh-of-1921688659][Question: rsync current directory mysubfolder to ssh of 192.168.86.59]]
+  - [[#question-in-emacs-what-command-do-i-run-with-m-x-with-the-text-highlighted][Question: in emacs what command do I run with m-x with the text highlighted]]
+  - [[#question-how-do-i-jump-to-matching-parenthesis-in-emacs][Question: how do I jump to matching parenthesis in emacs]]
+  - [[#question-guix-uninstall-package-emacs][Question: guix uninstall package emacs]]
+  - [[#question-how-do-i-update-everything-on-guix][Question: how do I update everything on guix]]
+  - [[#question-how-do-i-list-all-packages-installed-with-guix][Question: how do I list all packages installed with guix]]
+:END:
+
+** Introduction
 - saving questions I ask AI and answers it gives me
 - please always carefully double check information before using some replies it
   gives are wrong or not clear
