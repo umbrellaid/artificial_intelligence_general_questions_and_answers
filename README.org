@@ -1062,25 +1062,19 @@ If you run into any issues (e.g., "package not found" or permissions errors), le
 #+end_example
 ** Question: how do I update everything on guix
 david@david-HP-Pavilion-Gaming-Laptop-15z-ec200:~$ guix package --remove emacs
-guix package: warning: Your Guix installation is 21 days old.
-guix package: warning: Consider running 'guix pull' followed by
-'guix package -u' to get up-to-date packages and security updates.
+guix package: warning: Your Guix installation is 21 days old. guix package:
+warning: Consider running 'guix pull' followed by 'guix package -u' to get
+up-to-date packages and security updates.
 
-The following package will be removed:
-   emacs 29.4
+The following package will be removed: emacs 29.4
 
 The following derivation will be built:
   /gnu/store/inwfifrmgw9wpy1mkaaa55lcc0ylmwa0-profile.drv
 
-building CA certificate bundle...
-listing Emacs sub-directories...
-building fonts directory...
-generating GLib schema cache...
-building directory of Info manuals...
-building XDG desktop file cache...
-building XDG MIME database...
-building profile with 14 packages...
-[3]+  Done                    emacs  (wd: ~/.local/share/fonts)
+building CA certificate bundle... listing Emacs sub-directories... building
+fonts directory... generating GLib schema cache... building directory of Info
+manuals... building XDG desktop file cache... building XDG MIME database...
+building profile with 14 packages... [3]+ Done emacs (wd: ~/.local/share/fonts)
 (wd now: ~)
 #+begin_example
 From the output you’ve shared, it looks like you successfully removed Emacs using `guix package --remove emacs`, but you also received a warning that your Guix installation is 21 days old. The warning suggests running `guix pull` followed by `guix package -u` to update everything. Let me walk you through how to update *everything* on your Guix system, including the Guix tool itself, your user packages, and (if applicable) the system configuration.
