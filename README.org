@@ -1012,3 +1012,189 @@ time.
 
 Let me know if you need further clarification!
 #+end_example
+** Question: how do I jump to matching parenthesis in emacs
+#+begin_example
+In Emacs, there are a few handy ways to jump to matching parentheses, brackets, or braces:
+
+1. Using the built-in keybinding:
+   - Press `C-M-n` (Ctrl + Alt + n) to move forward to the matching parenthesis
+   - Press `C-M-p` (Ctrl + Alt + p) to move backward to the matching parenthesis
+
+2. If your cursor is on a parenthesis:
+   - Press `M-x forward-sexp` (or `C-M-f`) to jump to the matching closing parenthesis
+   - Press `M-x backward-sexp` (or `C-M-b`) to jump to the matching opening parenthesis
+
+3. With show-paren-mode enabled (which highlights matching parentheses):
+   - Type `M-x show-paren-mode` to enable it
+   - When your cursor is on a parenthesis, it will highlight its match, making it easier to spot
+   - Then use the above navigation commands to jump there
+
+The most common and quickest method is using `C-M-n` and `C-M-p`. These work for all paired delimiters (parentheses, brackets, braces) and are especially useful in programming modes like Lisp, C, or Python.
+
+If these keybindings don’t work as expected, it might be due to your Emacs configuration or terminal settings. Let me know if you need help troubleshooting!
+#+end_example
+** Question: guix uninstall package emacs
+#+begin_example
+It seems like you're trying to uninstall the Emacs package using the Guix package manager. I assume you're working in a GNU/Linux environment with Guix installed. Here's how you can uninstall Emacs using Guix:
+
+The correct command to remove a package in Guix is:
+
+```
+guix package --remove emacs
+```
+
+or equivalently:
+
+```
+guix remove emacs
+```
+
+Some additional notes:
+- You might need to run this with `sudo` if it's a system-wide installation, though Guix is often used per-user.
+- If you want to completely clean up unused dependencies afterward, you can run:
+```
+guix gc
+```
+(This performs a garbage collection of unused store items.)
+
+If you run into any issues (e.g., "package not found" or permissions errors), let me know what you're seeing, and I can help troubleshoot! What operating system are you using Guix on?
+#+end_example
+** Question: how do I update everything on guix
+david@david-HP-Pavilion-Gaming-Laptop-15z-ec200:~$ guix package --remove emacs
+guix package: warning: Your Guix installation is 21 days old.
+guix package: warning: Consider running 'guix pull' followed by
+'guix package -u' to get up-to-date packages and security updates.
+
+The following package will be removed:
+   emacs 29.4
+
+The following derivation will be built:
+  /gnu/store/inwfifrmgw9wpy1mkaaa55lcc0ylmwa0-profile.drv
+
+building CA certificate bundle...
+listing Emacs sub-directories...
+building fonts directory...
+generating GLib schema cache...
+building directory of Info manuals...
+building XDG desktop file cache...
+building XDG MIME database...
+building profile with 14 packages...
+[3]+  Done                    emacs  (wd: ~/.local/share/fonts)
+(wd now: ~)
+#+begin_example
+From the output you’ve shared, it looks like you successfully removed Emacs using `guix package --remove emacs`, but you also received a warning that your Guix installation is 21 days old. The warning suggests running `guix pull` followed by `guix package -u` to update everything. Let me walk you through how to update *everything* on your Guix system, including the Guix tool itself, your user packages, and (if applicable) the system configuration.
+
+You’re on an HP Pavilion Gaming Laptop, and I assume this is a Guix setup on a foreign distro (e.g., Ubuntu or Debian) rather than Guix System, since you’re in a typical home directory path. If you’re actually using Guix System, let me know, and I’ll adjust the instructions!
+
+### Steps to Update Everything on Guix
+
+#### 1. Update Guix Itself (`guix pull`)
+The `guix pull` command updates the Guix package manager and its package definitions to the latest version from the official Guix repository.
+
+Run:
+```
+guix pull
+```
+
+- This might take a few minutes as it downloads and builds the latest Guix.
+- Once it completes, you’ll see a message about a new Guix version being available in your profile.
+- To ensure you’re using the updated Guix, either start a new terminal session or run:
+```
+hash guix
+```
+This refreshes your shell’s cache so it picks up the new `guix` binary.
+
+#### 2. Update All Installed Packages (`guix package -u`)
+After updating Guix with `guix pull`, you can update all the packages installed in your user profile.
+
+Run:
+```
+guix package -u
+```
+
+- The `-u` flag means "upgrade" and will update all packages in your profile to their latest versions based on the package definitions from `guix pull`.
+- If you want to see what will be updated first without applying changes, you can use:
+```
+guix package -u --dry-run
+```
+
+#### 3. Clean Up Unused Dependencies (Optional)
+After updating, some old package versions might no longer be needed. You can clean them up with:
+
+```
+guix gc
+```
+
+- This performs a garbage collection, freeing up space in `/gnu/store`.
+- If you want to be extra thorough and reclaim as much space as possible, add the `--collect-garbage` option:
+```
+guix gc --collect-garbage
+```
+
+#### 4. Update the System (If Using Guix System)
+If you’re running Guix System (not just Guix on a foreign distro), you’ll also need to update the operating system itself. You didn’t mention a system config file, so I’ll assume this doesn’t apply for now. If it does, let me know, and I can explain how to use `guix system reconfigure`.
+
+### Putting It All Together
+Here’s the full sequence to update everything (assuming a non-Guix-System setup):
+
+```
+guix pull
+hash guix
+guix package -u
+guix gc
+```
+
+### Addressing Your Output
+Your output shows:
+- Guix is 21 days old (fixed by `guix pull`).
+- Emacs 29.4 was removed successfully.
+- A new profile was built with 14 packages remaining.
+
+After running the steps above, you won’t see that "21 days old" warning anymore, and all your packages will be up to date. If you hit any errors (e.g., network issues during `guix pull` or build failures), paste them here, and I’ll help you debug.
+
+How does that sound? Ready to run `guix pull`?
+#+end_example
+** Question: how do I list all packages installed with guix
+#+begin_example
+To list all packages installed with Guix in your user profile, you can use the `guix package` command with the `--list-installed` option (or `-I` for short). Here’s how to do it:
+
+### Command to List Installed Packages
+Run:
+```
+guix package --list-installed
+```
+or equivalently:
+```
+guix package -I
+```
+
+### What You’ll See
+This will output a table with the following columns:
+- **Name**: The package name (e.g., `emacs`).
+- **Version**: The installed version (e.g., `29.4`).
+- **Output**: The specific output of the package (usually `out`, but some packages have multiple outputs like `doc` or `lib`).
+- **Location**: The profile where it’s installed (e.g., `/gnu/store/...-profile`).
+
+For example, your output might look something like this:
+```
+name         version    output  location
+hello        2.12.1     out     /gnu/store/...-profile
+python       3.11.2     out     /gnu/store/...-profile
+glibc-locales 2.38      out     /gnu/store/...-profile
+```
+
+### Notes
+- This lists packages in your *current user profile*. If you’re using multiple profiles (e.g., via `guix package --profile=some-profile`), you’ll need to specify the profile with:
+```
+guix package --list-installed --profile=/path/to/profile
+```
+- If you’re on Guix System and want to see system-wide packages (not just user-installed ones), you’d need to inspect the system configuration file (e.g., `/etc/config.scm`), but based on your earlier prompt, it seems you’re using Guix on a foreign distro, so this likely doesn’t apply.
+- From your previous output, you mentioned a profile with 14 packages after removing Emacs. Running `guix package -I` now should show those 14 packages.
+
+### Try It Out
+Go ahead and run:
+```
+guix package -I
+```
+and let me know what you see! If you want to filter the list (e.g., search for a specific package) or need help interpreting the output, just ask. What’s your next step after checking the list?
+#+end_example
