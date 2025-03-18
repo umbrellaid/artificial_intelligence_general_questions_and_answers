@@ -1,6 +1,7 @@
 * artificial intelligence general questions and answers
-saving questions I ask AI and answers it gives me please always carefully double
-check information before using some replies it gives are wrong or not clear
+- saving questions I ask AI and answers it gives me
+- please always carefully double check information before using some replies it
+  gives are wrong or not clear
 ** Question: when using rsync do I put the slash / at the end of the path or not
    if I want to synchronize two folders so I have external drive a with
    subfolder big_local_files and internal drive b with subfolder big_local_files
